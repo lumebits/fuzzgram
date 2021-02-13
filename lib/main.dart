@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
-                children: [
+                children: <Widget>[
                   const Icon(
                     Icons.search,
                     color: Colors.blueGrey,
@@ -49,16 +49,13 @@ class _MyAppState extends State<MyApp> {
                   const SizedBox(
                     width: 10,
                   ),
-                  const Text(
-                    'Search templates',
-                    style: TextStyle(
-                      color: Colors.grey,
+                  new Flexible(
+                    child: new TextField(
+                      decoration: InputDecoration(
+                          hintText: 'Search templates',
+                          border: InputBorder.none
+                      ),
                     ),
-                  ),
-                  const Spacer(),
-                  const VerticalDivider(
-                    indent: 10,
-                    endIndent: 10,
                   ),
                 ],
             ),
