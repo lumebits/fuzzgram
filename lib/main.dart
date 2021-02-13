@@ -53,8 +53,9 @@ class _MyAppState extends State<MyApp> {
                     child: new TextField(
                       decoration: InputDecoration(
                           hintText: 'Search templates',
-                          border: InputBorder.none
+                          border: InputBorder.none,
                       ),
+                      cursorColor: Colors.grey
                     ),
                   ),
                 ],
