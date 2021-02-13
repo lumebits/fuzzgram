@@ -15,23 +15,56 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Floating NavBar Example',
+      title: 'Fuzzgram',
       home: Scaffold(
         backgroundColor: Color(0xEFFFFFFF),
         appBar: AppBar(
-          title: Text('Floating NavBar Example'),
+          title: Text('Fuzzgram', style: TextStyle(color: Colors.black),),
           centerTitle: true,
+          backgroundColor: Colors.white,
         ),
         //If you want to show body behind the navbar, it should be true
         extendBody: true,
-        body: Center(
-          child: Text(
-            "index: $_index",
-            style: TextStyle(
-              fontSize: 52,
+        body: Container(
+            height: 50,
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 30)
+                .copyWith(bottom: 20),
+            decoration: BoxDecoration(
+                boxShadow: [
+                  const BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10,
+                      spreadRadius: 0.5)
+                ],
+                borderRadius: BorderRadius.circular(25),
+                color: Colors.white),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.search,
+                    color: Colors.blueGrey,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Text(
+                    'Search templates',
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                  const Spacer(),
+                  const VerticalDivider(
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                ],
             ),
           ),
         ),
+
         bottomNavigationBar: FloatingNavbar(
           backgroundColor: Colors.white,
           unselectedItemColor: Colors.grey,
