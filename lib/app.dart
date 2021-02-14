@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fuzzgram/navigation/navigation.dart';
+import 'package:fuzzgram/search/bloc/search_bloc.dart';
+import 'package:fuzzgram/search/view/search_widget.dart';
 
 class App extends StatelessWidget {
 
@@ -8,11 +10,38 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<NavigationBloc>(
-      create: (_) => NavigationBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<SearchBloc>(
+            create: (_) => SearchBloc()
+        ),
+        BlocProvider<NavigationBloc>(
+          create: (_) => NavigationBloc()
+        )
+      ],
       child: MaterialApp(
+        title: 'Fuzzgram',
         builder: (context, child) {
-          return NavigationWidget(activeTab: AppTab.home);
+          return BlocBuilder<NavigationBloc, AppTab>(
+            builder: (context, activeTab) {
+              return Scaffold(
+                backgroundColor: Color(0xEFFFFFFF),
+                appBar: AppBar(
+                  title: Text('Fuzzgram', style: TextStyle(color: Colors.black),),
+                  centerTitle: true,
+                  backgroundColor: Colors.white,
+                ),
+                extendBody: true,
+                body: Column(
+                  children: [
+                    SearchWidget(),
+                    activeTab == AppTab.home ? Center() : (activeTab == AppTab.explore ? Center() : Center()),
+                  ],
+                ),
+                bottomNavigationBar: NavigationWidget()
+              );
+            },
+          );
         },
       )
     );

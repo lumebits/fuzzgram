@@ -21,7 +21,7 @@ packages:
       name: archive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.13"
+    version: "3.0.0"
   args:
     dependency: transitive
     description:
@@ -140,7 +140,7 @@ packages:
       name: crypto
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.5"
+    version: "3.0.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -190,6 +190,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.1"
+  floating_search_bar:
+    dependency: "direct main"
+    description:
+      name: floating_search_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -452,7 +459,7 @@ packages:
       name: sync_http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.3.0"
   term_glyph:
     dependency: transitive
     description:
@@ -501,7 +508,7 @@ packages:
       name: vm_service
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.5.0"
+    version: "6.0.1-nullsafety.1"
   watcher:
     dependency: transitive
     description:
@@ -522,7 +529,7 @@ packages:
       name: webdriver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.2"
+    version: "3.0.0"
   webkit_inspection_protocol:
     dependency: transitive
     description:

@@ -19,14 +19,8 @@ class NavigationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationBloc, AppTab>(
-      builder: (context, activeTab) {
-        return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: const Text('Fuzzgram'),
-          ),
-          body: activeTab == AppTab.home ? Center() : (activeTab == AppTab.explore ? Center() : Center()),
-          bottomNavigationBar: FloatingNavbar(
+        builder: (context, activeTab) {
+          return FloatingNavbar(
             key: FuzzgramKeys.navigation,
             currentIndex: AppTab.values.indexOf(activeTab),
             onTap: (index) => BlocProvider.of<NavigationBloc>(context).add(TabTapped(AppTab.values[index])),
@@ -39,9 +33,8 @@ class NavigationWidget extends StatelessWidget {
               FloatingNavbarItem(icon: Icons.search, title: 'Explore'),
               FloatingNavbarItem(icon: Icons.star, title: 'Starred'),
             ],
-          ),
-        );
-      },
+          );
+        }
     );
   }
 }
