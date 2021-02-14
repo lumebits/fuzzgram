@@ -1,51 +1,34 @@
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fuzzgram/app.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MyApp extends StatefulWidget {
-  // This widget is the root of your application.
-  @override
-  _MyAppState createState() => _MyAppState();
+  EquatableConfig.stringify = kDebugMode;
+  Bloc.observer = SimpleBlocObserver();
+  runApp(App());
 }
 
-class _MyAppState extends State<MyApp> {
-  int _index = 0;
+class SimpleBlocObserver extends BlocObserver {
+  @override
+  void onEvent(Bloc bloc, Object event) {
+    print('onEvent $event');
+    super.onEvent(bloc, event);
+  }
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Floating NavBar Example',
-      home: Scaffold(
-        backgroundColor: Color(0xEFFFFFFF),
-        appBar: AppBar(
-          title: Text('Floating NavBar Example'),
-          centerTitle: true,
-        ),
-        //If you want to show body behind the navbar, it should be true
-        extendBody: true,
-        body: Center(
-          child: Text(
-            "index: $_index",
-            style: TextStyle(
-              fontSize: 52,
-            ),
-          ),
-        ),
-        bottomNavigationBar: FloatingNavbar(
-          backgroundColor: Colors.white,
-          unselectedItemColor: Colors.grey,
-          borderRadius: 36,
-          margin: const EdgeInsets.symmetric(horizontal: 28, vertical: 28),
-          onTap: (int val) => setState(() => _index = val),
-          currentIndex: _index,
-          items: [
-            FloatingNavbarItem(icon: Icons.home, title: 'Home'),
-            FloatingNavbarItem(icon: Icons.search, title: 'Explore'),
-            FloatingNavbarItem(icon: Icons.star, title: 'Favourites'),
-          ],
-        ),
-      ),
-    );
+  onTransition(Bloc bloc, Transition transition) {
+    print('onTransition $transition');
+    super.onTransition(bloc, transition);
+  }
+
+  @override
+  void onError(Cubit cubit, Object error, StackTrace stackTrace) {
+    print('onError $error');
+    super.onError(cubit, error, stackTrace);
   }
 }
