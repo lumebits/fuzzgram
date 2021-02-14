@@ -45,8 +45,12 @@ class SearchWidget extends StatelessWidget {
                           hintText: 'Search templates',
                           border: InputBorder.none,
                         ),
-                        cursorColor: Colors.grey
-                    ),
+                        cursorColor: Colors.grey,
+                      textInputAction: TextInputAction.search,
+                      onSubmitted: (value) {
+                        print("Searching value: " + value);
+                      },
+                  ),
                   ),
                 ],
               ),
