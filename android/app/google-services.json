@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "755272699941",
+    "project_id": "fuzzgram",
+    "storage_bucket": "fuzzgram.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755272699941:android:44d59fd10a54ea0cc36fcc",
+        "android_client_info": {
+          "package_name": "com.lumebits.fuzzgram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755272699941-fo09s5klvl9f9a6un8n7n875svi6935g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-dVEjl78UWU7c87Us1x_rr0blW_2__AA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755272699941-fo09s5klvl9f9a6un8n7n875svi6935g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
