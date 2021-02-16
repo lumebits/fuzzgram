@@ -1,11 +1,4 @@
-class Template {
-  final String name;
-
-  const Template(this.name);
-
-  @override
-  String toString() => 'Template { name: $name }';
-}
+import 'package:fuzzgram/packages/template_repository/lib/template_repository.dart';
 
 class TemplateSearchState {
   final bool isLoading;
