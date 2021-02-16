@@ -14,8 +14,7 @@ class FirebaseTemplateRepository implements TemplateRepository {
   @override
   Stream<List<Template>> findTemplates(int limit, [DateTime startAfter]) {
     var refTemplates = templatesCollection
-        .orderBy('date')
-        .orderBy('popularity')
+        .orderBy('date', descending: true)
         .limit(limit);
 
     if (startAfter != null) {

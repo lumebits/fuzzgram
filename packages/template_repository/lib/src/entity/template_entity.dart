@@ -50,8 +50,8 @@ class TemplateEntity extends Equatable {
       snap.get('name'),
       snap.get('popularity'),
       snap.get('imageUrl'),
-      snap.get('date'),
-      snap.get('categories'),
+      snap.get('date').toDate(),
+      new List<String>.from(snap.get('categories')),
     );
   }
 
