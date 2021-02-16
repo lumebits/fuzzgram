@@ -1,30 +1,39 @@
 part of 'home_bloc.dart';
 
-enum HomeStatus { loading, success, failure }
+abstract class HomeState extends Equatable {
+  const HomeState();
 
-class HomeState extends Equatable {
-  const HomeState({
-    this.status = HomeStatus.loading,
+  @override
+  List<Object> get props => [];
+}
+
+class HomeInitial extends HomeState {}
+
+class HomeFailure extends HomeState {}
+
+class HomeSuccess extends HomeState {
+  final List<Template> templates;
+  final bool hasReachedMax;
+
+  const HomeSuccess({
     this.templates = const <Template>[],
     this.hasReachedMax = false,
   });
 
-  final HomeStatus status;
-  final List<Template> templates;
-  final bool hasReachedMax;
-
-  HomeState copyWith({
-    HomeStatus status,
+  HomeSuccess copyWith({
     List<Template> templates,
     bool hasReachedMax,
   }) {
-    return HomeState(
-      status: status ?? this.status,
+    return HomeSuccess(
       templates: templates ?? this.templates,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
     );
   }
 
   @override
-  List<Object> get props => [status, templates, hasReachedMax];
+  List<Object> get props => [templates, hasReachedMax];
+
+  @override
+  String toString() =>
+      'HomeSuccess { templates: ${templates.length}, hasReachedMax: $hasReachedMax }';
 }

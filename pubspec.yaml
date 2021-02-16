@@ -27,6 +27,7 @@ dependencies:
   floating_search_bar: ^0.3.0
   flutter_bloc: ^6.1.0
   equatable: ^1.2.5
+  rxdart: ^0.23.1
   template_repository:
     path: packages/template_repository
 

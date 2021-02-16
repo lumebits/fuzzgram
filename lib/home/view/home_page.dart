@@ -10,8 +10,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<HomeBloc>(
-      create: (_) => HomeBloc(FirebaseTemplateRepository()),
+    return BlocProvider(
+      create: (context) => HomeBloc(templateRepository: FirebaseTemplateRepository())..add(FetchTemplates()),
       child: HomeList(),
     );
   }
@@ -21,9 +21,9 @@ class HomeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-      if (state.status == HomeStatus.loading) {
+      if (state is HomeInitial) {
         return Center(child: CircularProgressIndicator());
-      } else if (state.status == HomeStatus.success) {
+      } else if (state is HomeSuccess) {
         final templatesList = state.templates;
         return SafeArea(
           child: ListView.builder(

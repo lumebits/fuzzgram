@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fuzzgram/app.dart';
+import 'package:template_repository/template_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   EquatableConfig.stringify = kDebugMode;
   Bloc.observer = SimpleBlocObserver();
+  await TemplateRepository.initialize();
   runApp(App());
 }
 

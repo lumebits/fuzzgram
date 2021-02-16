@@ -2,42 +2,61 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:template_repository/template_repository.dart';
 
 part 'home_event.dart';
-
 part 'home_state.dart';
 
-const _templatesLimit = 2000;
+const _templatesToLoad = 20;
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final TemplateRepository templateRepository;
 
-  HomeBloc(this.templateRepository)
-      : assert(templateRepository != null),
-        super(HomeState()) {
-    _fetchTemplates();
+  HomeBloc({@required this.templateRepository}) : super(HomeInitial());
+
+  @override
+  Stream<Transition<HomeEvent, HomeState>> transformEvents(
+      Stream<HomeEvent> events,
+      TransitionFunction<HomeEvent, HomeState> transitionFn,
+      ) {
+    return super.transformEvents(
+      events.debounceTime(const Duration(milliseconds: 500)),
+      transitionFn,
+    );
   }
 
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
-    if (state.hasReachedMax) yield state;
-
-    if (event is TemplatesFetched) {
-      final templates = List.of(state.templates)..addAll(event.data);
-      yield state.copyWith(
-          status: HomeStatus.success,
-          templates: templates,
-          hasReachedMax: _hasReachedMax(templates.length));
+    final currentState = state;
+    if (event is FetchTemplates && !_hasReachedMax(currentState)) {
+      try {
+        if (currentState is HomeInitial) {
+          final templates = await _fetchTemplates();
+          yield HomeSuccess(templates: templates, hasReachedMax: false);
+          return;
+        }
+        if (currentState is HomeSuccess) {
+          final templates =
+              await _fetchTemplates(currentState.templates.last.date);
+          yield templates.isEmpty
+              ? currentState.copyWith(hasReachedMax: true)
+              : HomeSuccess(
+                  templates: currentState.templates + templates,
+                  hasReachedMax: false,
+                );
+        }
+      } catch (e) {
+        yield HomeFailure();
+      }
     }
   }
 
-  void _fetchTemplates([DateTime lastDate]) {
-    templateRepository
-        .findTemplates(_templatesLimit, lastDate)
-        .listen((data) => add(TemplatesFetched(data)));
+  Future<List<Template>> _fetchTemplates([DateTime lastDate]) {
+    return templateRepository.findTemplates(_templatesToLoad, lastDate).first;
   }
 
-  bool _hasReachedMax(int templatesCount) =>
-      templatesCount < _templatesLimit ? false : true;
+  bool _hasReachedMax(HomeState state) =>
+      state is HomeSuccess && state.hasReachedMax;
 }
