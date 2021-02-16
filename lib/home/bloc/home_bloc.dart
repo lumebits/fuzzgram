@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fuzzgram/packages/template_repository/lib/template_repository.dart';
+import 'package:template_repository/template_repository.dart';
 
 part 'home_event.dart';
 

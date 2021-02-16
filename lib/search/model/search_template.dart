@@ -1,4 +1,4 @@
-import 'package:fuzzgram/packages/template_repository/lib/template_repository.dart';
+import 'package:template_repository/template_repository.dart';
 
 class TemplateSearchState {
   final bool isLoading;

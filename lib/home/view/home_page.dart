@@ -3,8 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fuzzgram/home/home.dart';
-import 'package:fuzzgram/packages/template_repository/lib/src/firebase_template_repository.dart';
-import 'package:fuzzgram/packages/template_repository/lib/template_repository.dart';
+import 'package:template_repository/template_repository.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key key}) : super(key: key);
