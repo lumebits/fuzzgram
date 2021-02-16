@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fuzzgram/home/home.dart';
 import 'package:fuzzgram/navigation/navigation.dart';
 import 'package:fuzzgram/search/bloc/search_bloc.dart';
 import 'package:fuzzgram/search/view/search_widget.dart';
@@ -35,7 +36,7 @@ class App extends StatelessWidget {
                 body: Column(
                   children: [
                     SearchWidget(),
-                    activeTab == AppTab.home ? Center() : (activeTab == AppTab.explore ? Center() : Center()),
+                    activeTab == AppTab.home ? HomePage() : (activeTab == AppTab.explore ? Center() : Center()),
                   ],
                 ),
                 bottomNavigationBar: NavigationWidget()

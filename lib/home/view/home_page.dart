@@ -55,7 +55,7 @@ class TemplateItem extends StatelessWidget {
       key: new PageStorageKey<String>(template.id),
       title: Text(template.name),
       leading: Icon(
-        Icons.check_circle_rounded,
+        Icons.ac_unit,
         color: Colors.green,
       ),
       children: [
