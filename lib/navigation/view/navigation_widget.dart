@@ -13,7 +13,7 @@ class NavigationWidget extends StatelessWidget {
 
   NavigationWidget({
     Key key,
-    @required this.activeTab
+    this.activeTab = AppTab.home
   }) : super(key: key);
 
   @override
