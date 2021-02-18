@@ -41,7 +41,7 @@ class _HomePageState extends State<ScrollableHomePage> {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
       if (state is HomeInitial) {
-        return Center(child: CircularProgressIndicator());
+        return Center(child: BottomLoader());
       } else if (state is HomeSuccess) {
         final templatesList = state.templates;
         return GridView.builder(
