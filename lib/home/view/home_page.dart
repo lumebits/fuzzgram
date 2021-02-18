@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -43,9 +44,8 @@ class _HomePageState extends State<ScrollableHomePage> {
         return Center(child: CircularProgressIndicator());
       } else if (state is HomeSuccess) {
         final templatesList = state.templates;
-        return Expanded(
-          child: GridView.builder(
-            padding: EdgeInsets.only(top: 75.0),
+        return GridView.builder(
+            padding: EdgeInsets.only(top: 75.0, bottom: 90.0),
             controller: _scrollController,
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -55,14 +55,12 @@ class _HomePageState extends State<ScrollableHomePage> {
             ),
             itemCount: state.hasReachedMax ? templatesList.length : templatesList.length + 1,
             itemBuilder: (context, index) {
-              final template = templatesList[index];
               return index >= templatesList.length ? BottomLoader() :
                 GridTile(
-                  child: TemplateWidget(template: template)
+                  child: TemplateWidget(template: templatesList[index])
                 );
             },
-          ),
-        );
+          );
       } else {
         return Center(child: Text("Error"));
       }
@@ -100,8 +98,10 @@ class TemplateWidget extends StatelessWidget {
         child: Card(
           semanticContainer: true,
           clipBehavior: Clip.antiAliasWithSaveLayer,
-          child: Image.network(
-            template.imageUrl,
+          child: CachedNetworkImage(
+            imageUrl: template.imageUrl,
+            placeholder: (context, url) =>
+                BottomLoader(),
             fit: BoxFit.fill,
           ),
           shape: RoundedRectangleBorder(
@@ -125,6 +125,7 @@ class BottomLoader extends StatelessWidget {
           height: 33,
           child: CircularProgressIndicator(
             strokeWidth: 1.5,
+            valueColor: new AlwaysStoppedAnimation<Color>(Colors.grey),
           ),
         ),
       ),
