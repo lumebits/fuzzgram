@@ -33,10 +33,10 @@ class App extends StatelessWidget {
                   backgroundColor: Colors.white,
                 ),
                 extendBody: true,
-                body: Column(
+                body: Stack(
                   children: [
-                    SearchWidget(),
                     activeTab == AppTab.home ? HomePage() : (activeTab == AppTab.explore ? Center() : Center()),
+                    SearchWidget(),
                   ],
                 ),
                 bottomNavigationBar: NavigationWidget()

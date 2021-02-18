@@ -9,7 +9,7 @@ import 'package:template_repository/template_repository.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
-const _templatesToLoad = 20;
+const _templatesToLoad = 10;
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final TemplateRepository templateRepository;
