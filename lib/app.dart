@@ -5,6 +5,8 @@ import 'package:fuzzgram/navigation/navigation.dart';
 import 'package:fuzzgram/search/bloc/search_bloc.dart';
 import 'package:fuzzgram/search/view/search_widget.dart';
 
+import 'explore/explore.dart';
+
 class App extends StatelessWidget {
 
   App({Key key}) : super(key: key);
@@ -35,7 +37,7 @@ class App extends StatelessWidget {
                 extendBody: true,
                 body: Stack(
                   children: [
-                    activeTab == AppTab.home ? HomePage() : (activeTab == AppTab.explore ? Center() : Center()),
+                    activeTab == AppTab.home ? HomePage() : (activeTab == AppTab.explore ? ExplorePage() : Center()),
                     SearchWidget(),
                   ],
                 ),

@@ -12,17 +12,17 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeBloc(templateRepository: FirebaseTemplateRepository())..add(FetchTemplates()),
+      create: (context) =>
+          HomeBloc(templateRepository: FirebaseTemplateRepository())
+            ..add(FetchTemplates()),
       child: ScrollableHomePage(),
     );
   }
 }
 
 class ScrollableHomePage extends StatefulWidget {
-
   @override
   _HomePageState createState() => _HomePageState();
-
 }
 
 class _HomePageState extends State<ScrollableHomePage> {
@@ -45,22 +45,24 @@ class _HomePageState extends State<ScrollableHomePage> {
       } else if (state is HomeSuccess) {
         final templatesList = state.templates;
         return GridView.builder(
-            padding: EdgeInsets.only(top: 75.0, bottom: 90.0),
-            controller: _scrollController,
-            shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: MediaQuery.of(context).size.width /
-                  (MediaQuery.of(context).size.height),
-            ),
-            itemCount: state.hasReachedMax ? templatesList.length : templatesList.length + 1,
-            itemBuilder: (context, index) {
-              return index >= templatesList.length ? BottomLoader() :
-                GridTile(
-                  child: TemplateWidget(template: templatesList[index])
-                );
-            },
-          );
+          padding: EdgeInsets.only(top: 75.0, bottom: 90.0),
+          controller: _scrollController,
+          shrinkWrap: true,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: MediaQuery.of(context).size.width /
+                (MediaQuery.of(context).size.height),
+          ),
+          itemCount: state.hasReachedMax
+              ? templatesList.length
+              : templatesList.length + 1,
+          itemBuilder: (context, index) {
+            return index >= templatesList.length
+                ? BottomLoader()
+                : GridTile(
+                    child: TemplateWidget(template: templatesList[index]));
+          },
+        );
       } else {
         return Center(child: Text("Error"));
       }
@@ -80,7 +82,6 @@ class _HomePageState extends State<ScrollableHomePage> {
       _homeBloc.add(FetchTemplates());
     }
   }
-
 }
 
 class TemplateWidget extends StatelessWidget {
@@ -90,26 +91,27 @@ class TemplateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-        borderRadius: BorderRadius.circular(10.0),
+    return Card(
+      semanticContainer: true,
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
         onTap: () {
           print("Template tapped: " + template.id + " " + template.name);
         },
-        child: Card(
-          semanticContainer: true,
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          child: CachedNetworkImage(
-            imageUrl: template.imageUrl,
-            placeholder: (context, url) =>
-                BottomLoader(),
+        child: CachedNetworkImage(
+          imageUrl: template.imageUrl,
+          imageBuilder: (context, imageProvider) => Ink.image(
             fit: BoxFit.fill,
+            image: imageProvider,
           ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          elevation: 5,
-          margin: EdgeInsets.all(10),
-        )
+          placeholder: (context, url) => BottomLoader(),
+        ),
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      elevation: 5,
+      margin: EdgeInsets.all(10),
     );
   }
 }
