@@ -55,7 +55,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<List<Template>> _fetchTemplates([DateTime lastDate]) {
-    return templateRepository.findTemplates(_templatesToLoad, lastDate).first;
+    return templateRepository.findTemplates(_templatesToLoad, null, lastDate).first;
   }
 
   bool _hasReachedMax(HomeState state) =>

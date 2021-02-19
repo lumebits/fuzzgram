@@ -1,50 +1,59 @@
- import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:fuzzgram/home/home.dart';
+import 'package:fuzzgram/category/category.dart';
 import 'package:template_repository/template_repository.dart';
 import 'package:social_share/social_share.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key key}) : super(key: key);
+class CategoryPage extends StatelessWidget {
+  final String category;
+
+  CategoryPage({Key key, this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          HomeBloc(templateRepository: FirebaseTemplateRepository())
-            ..add(FetchTemplates()),
-      child: ScrollableHomePage(),
+      CategoryBloc(templateRepository: FirebaseTemplateRepository())
+        ..add(FetchTemplatesByCategory(category)),
+      child: ScrollableCategoryPage(category),
     );
   }
 }
 
-class ScrollableHomePage extends StatefulWidget {
+class ScrollableCategoryPage extends StatefulWidget {
+  final String category;
+
+  const ScrollableCategoryPage(this.category, {Key key}) : super(key: key);
+
   @override
-  _HomePageState createState() => _HomePageState();
+  _CategoryPageState createState() => _CategoryPageState(category);
 }
 
-class _HomePageState extends State<ScrollableHomePage> {
+class _CategoryPageState extends State<ScrollableCategoryPage> {
   final _scrollController = ScrollController();
   final _scrollThreshold = 200.0;
-  HomeBloc _homeBloc;
+  final String category;
+  CategoryBloc _categoryBloc;
+
+  _CategoryPageState(this.category);
 
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
-    _homeBloc = BlocProvider.of<HomeBloc>(context);
+    _categoryBloc = BlocProvider.of<CategoryBloc>(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
-      if (state is HomeInitial) {
+    return BlocBuilder<CategoryBloc, CategoryState>(builder: (context, state) {
+      if (state is CategoryInitial) {
         return Center(child: BottomLoader());
-      } else if (state is HomeSuccess) {
+      } else if (state is CategorySuccess) {
         final templatesList = state.templates;
         return GridView.builder(
           padding: EdgeInsets.only(top: 75.0, bottom: 90.0),
@@ -62,7 +71,7 @@ class _HomePageState extends State<ScrollableHomePage> {
             return index >= templatesList.length
                 ? BottomLoader()
                 : GridTile(
-                    child: TemplateWidget(template: templatesList[index]));
+                child: TemplateWidget(template: templatesList[index]));
           },
         );
       } else {
@@ -81,7 +90,7 @@ class _HomePageState extends State<ScrollableHomePage> {
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.position.pixels;
     if (maxScroll - currentScroll <= _scrollThreshold) {
-      _homeBloc.add(FetchTemplates());
+      _categoryBloc.add(FetchTemplatesByCategory(category));
     }
   }
 }

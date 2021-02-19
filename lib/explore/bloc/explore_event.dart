@@ -5,4 +5,8 @@ abstract class ExploreEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FetchTemplates extends ExploreEvent {}
+class CategoryTapped extends ExploreEvent {
+  final String category;
+
+  CategoryTapped(this.category);
+}

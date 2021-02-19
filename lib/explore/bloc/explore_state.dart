@@ -9,31 +9,15 @@ abstract class ExploreState extends Equatable {
 
 class ExploreInitial extends ExploreState {}
 
-class ExploreFailure extends ExploreState {}
+class ExploringCategory extends ExploreState {
+  final String category;
 
-class ExploreSuccess extends ExploreState {
-  final List<Template> templates;
-  final bool hasReachedMax;
-
-  const ExploreSuccess({
-    this.templates = const <Template>[],
-    this.hasReachedMax = false,
-  });
-
-  ExploreSuccess copyWith({
-    List<Template> templates,
-    bool hasReachedMax,
-  }) {
-    return ExploreSuccess(
-      templates: templates ?? this.templates,
-      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
-    );
-  }
+  const ExploringCategory(this.category);
 
   @override
-  List<Object> get props => [templates, hasReachedMax];
+  List<Object> get props => [category];
 
   @override
   String toString() =>
-      'ExploreSuccess { templates: ${templates.length}, hasReachedMax: $hasReachedMax }';
+      'ExploringCategory { category: $category }';
 }
