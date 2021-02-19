@@ -48,6 +48,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 );
         }
       } catch (e) {
+        print(e);
         yield HomeFailure();
       }
     }

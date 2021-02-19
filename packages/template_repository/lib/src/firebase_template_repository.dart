@@ -31,6 +31,26 @@ class FirebaseTemplateRepository implements TemplateRepository {
   }
 
   @override
+  Stream<List<Template>> findTemplatesByCategory(int limit, String category, [DateTime startAfter]) {
+    var refTemplates = templatesCollection
+        .where('categories', arrayContains: category)
+        .orderBy('date', descending: true)
+        .limit(limit);
+
+    if (startAfter != null) {
+      refTemplates = refTemplates.startAfter([startAfter]);
+    }
+
+    return refTemplates
+        .snapshots()
+        .map((snapshot) {
+      return snapshot.docs
+          .map((doc) => Template.fromEntity(TemplateEntity.fromSnapshot(doc)))
+          .toList();
+    });
+  }
+
+  @override
   Stream<List<String>> findCategories() {
     return categoriesCollection.snapshots().map((snapshot) {
       return snapshot.docs.map((doc) => doc.get('name')).toList();

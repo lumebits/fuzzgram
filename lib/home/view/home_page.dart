@@ -1,10 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
+ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:fuzzgram/home/home.dart';
 import 'package:template_repository/template_repository.dart';
+import 'package:social_share/social_share.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key key}) : super(key: key);
@@ -97,6 +99,11 @@ class TemplateWidget extends StatelessWidget {
       child: InkWell(
         onTap: () {
           print("Template tapped: " + template.id + " " + template.name);
+        },
+        onLongPress: () async {
+          print("Long pressed template: "+ template.id + " " + template.name);
+          final file = await DefaultCacheManager().getSingleFile(template.imageUrl);
+          SocialShare.shareOptions("Download Fuzzgram and get lots of templates like this!", imagePath: file.path);
         },
         child: CachedNetworkImage(
           imageUrl: template.imageUrl,
