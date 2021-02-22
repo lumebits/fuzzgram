@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fuzzgram/category/bloc/category_bloc.dart';
 import 'package:fuzzgram/category/view/category_page.dart';
 import 'package:fuzzgram/explore/explore.dart';
 
@@ -27,7 +26,7 @@ class ExploreList extends StatelessWidget {
         return CategoryPage(category: state.category);
       } else {
         return GridView.count(
-          padding: EdgeInsets.only(top: 75.0, bottom: 90.0),
+          padding: EdgeInsets.only(bottom: 90.0),
           crossAxisCount: 2,
           childAspectRatio: MediaQuery
               .of(context)

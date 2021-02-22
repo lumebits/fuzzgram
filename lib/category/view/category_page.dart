@@ -56,7 +56,7 @@ class _CategoryPageState extends State<ScrollableCategoryPage> {
       } else if (state is CategorySuccess) {
         final templatesList = state.templates;
         return GridView.builder(
-          padding: EdgeInsets.only(top: 75.0, bottom: 90.0),
+          padding: EdgeInsets.only(bottom: 90.0),
           controller: _scrollController,
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

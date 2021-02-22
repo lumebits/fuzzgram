@@ -38,7 +38,7 @@ class App extends StatelessWidget {
                 body: Stack(
                   children: [
                     activeTab == AppTab.home ? HomePage() : (activeTab == AppTab.explore ? ExplorePage() : Center()),
-                    SearchWidget(),
+                    //SearchWidget(),
                   ],
                 ),
                 bottomNavigationBar: NavigationWidget()

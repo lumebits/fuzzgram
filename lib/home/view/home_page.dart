@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:fuzzgram/home/home.dart';
+import 'package:fuzzgram/template/bloc/template_bloc.dart';
 import 'package:template_repository/template_repository.dart';
 import 'package:social_share/social_share.dart';
 
@@ -47,7 +48,7 @@ class _HomePageState extends State<ScrollableHomePage> {
       } else if (state is HomeSuccess) {
         final templatesList = state.templates;
         return GridView.builder(
-          padding: EdgeInsets.only(top: 75.0, bottom: 90.0),
+          padding: EdgeInsets.only(bottom: 90.0),
           controller: _scrollController,
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
