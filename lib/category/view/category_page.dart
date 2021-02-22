@@ -11,7 +11,7 @@ import 'package:social_share/social_share.dart';
 class CategoryPage extends StatelessWidget {
   final String category;
 
-  CategoryPage({Key key, this.category}) : super(key: key);
+  CategoryPage(this.category, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

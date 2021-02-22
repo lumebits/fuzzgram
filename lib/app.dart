@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fuzzgram/category/category.dart';
+import 'package:fuzzgram/explore/explore.dart';
 import 'package:fuzzgram/home/home.dart';
 import 'package:fuzzgram/navigation/navigation.dart';
 import 'package:fuzzgram/routes.dart';
 import 'package:fuzzgram/search/bloc/search_bloc.dart';
 import 'package:fuzzgram/search/view/search_widget.dart';
-
-import 'explore/explore.dart';
 
 class App extends StatelessWidget {
   App({Key key}) : super(key: key);
@@ -14,35 +14,48 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [
-          BlocProvider<SearchBloc>(create: (_) => SearchBloc()),
-        ],
-        child: MaterialApp(
-          title: 'Fuzzgram',
-          onGenerateRoute: (settings) {
-            return PageRouteBuilder(
-                pageBuilder: (_, __, ___) =>
-                    settings.name == FuzzgramRoutes.home ? BasePage(HomePage(), AppTab.home)
-                        : (settings.name == FuzzgramRoutes.explore ? BasePage(ExplorePage(), AppTab.explore)
-                            : BasePage(Center(), AppTab.starred)),
-                transitionsBuilder: (_, a, __, c) =>
-                    FadeTransition(opacity: a, child: c));
-          },
-        ));
+      providers: [
+        BlocProvider<SearchBloc>(create: (_) => SearchBloc()),
+      ],
+      child: MaterialApp(
+        title: 'Fuzzgram',
+        onGenerateRoute: (settings) {
+          return PageRouteBuilder(
+            pageBuilder: (_, __, ___) {
+              if (settings.name == FuzzgramRoutes.home) {
+                return BasePage(HomePage(), AppTab.home);
+              } else if (settings.name == FuzzgramRoutes.explore) {
+                return BasePage(ExplorePage(), AppTab.explore);
+              } else if (settings.name == FuzzgramRoutes.exploreCategory) {
+                return BasePage(CategoryPage(settings.arguments), AppTab.explore, withBackButton: true);
+              } else {
+                return BasePage(Center(), AppTab.starred);
+              }
+            },
+            transitionsBuilder: (_, a, __, c) =>
+                FadeTransition(opacity: a, child: c));
+        },
+      )
+    );
   }
 }
 
 class BasePage extends StatelessWidget {
   final Widget widget;
   final AppTab appTab;
+  final withBackButton;
 
-  const BasePage(this.widget, this.appTab);
+  const BasePage(this.widget, this.appTab, {this.withBackButton = false});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xEFFFFFFF),
         appBar: AppBar(
+          leading: withBackButton ? IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context)
+          ) : null,
           title: Text(
             'Fuzzgram',
             style: TextStyle(color: Colors.black),
