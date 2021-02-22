@@ -54,7 +54,8 @@ class BasePage extends StatelessWidget {
         appBar: AppBar(
           leading: withBackButton ? IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () => Navigator.pop(context)
+            onPressed: () => Navigator.pop(context),
+            color: Colors.black,
           ) : null,
           title: Text(
             'Fuzzgram',
