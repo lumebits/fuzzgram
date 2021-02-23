@@ -14,7 +14,7 @@ class TemplatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          TemplateBloc()..add(LoadStarredStatus(template)),
+          TemplateBloc(template)..add(LoadStarredStatus()),
       child: TemplateDetailPage(template),
     );
   }
