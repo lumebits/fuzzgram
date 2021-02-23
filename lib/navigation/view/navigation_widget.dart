@@ -30,7 +30,7 @@ class NavigationWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 28, vertical: 28),
       items: [
         FloatingNavbarItem(icon: Icons.home, title: 'Home'),
-        FloatingNavbarItem(icon: Icons.search, title: 'Explore'),
+        FloatingNavbarItem(icon: Icons.explore, title: 'Explore'),
         FloatingNavbarItem(icon: Icons.star, title: 'Starred'),
       ],
     );
