@@ -8,14 +8,14 @@ import 'package:template_repository/template_repository.dart';
 class TemplatePage extends StatelessWidget {
   final Template template;
 
-  TemplatePage({Key key, this.template}) : super(key: key);
+  TemplatePage(this.template, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          TemplateBloc(),
-      child: TemplateDetailPage(),
+          TemplateBloc()..add(LoadStarredStatus(template)),
+      child: TemplateDetailPage(template),
     );
   }
 }
@@ -23,7 +23,7 @@ class TemplatePage extends StatelessWidget {
 class TemplateDetailPage extends StatelessWidget {
   final Template template;
 
-  TemplateDetailPage({Key key, @required this.template}) : super(key: key);
+  TemplateDetailPage(this.template, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

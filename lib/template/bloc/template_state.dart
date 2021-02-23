@@ -7,17 +7,6 @@ abstract class TemplateState extends Equatable {
   List<Object> get props => [];
 }
 
-class TemplateInitial extends TemplateState {}
+class TemplateStarred extends TemplateState {}
 
-class TemplateDetail extends TemplateState {
-  final Template template;
-
-  const TemplateDetail(this.template);
-
-  @override
-  List<Object> get props => [template];
-
-  @override
-  String toString() =>
-      'TemplateDetail { template: $template }';
-}
+class TemplateNotStarred extends TemplateState {}

@@ -9,12 +9,23 @@ part 'template_state.dart';
 
 class TemplateBloc extends Bloc<TemplateEvent, TemplateState> {
 
-  TemplateBloc() : super(TemplateInitial());
+  TemplateBloc() : super(TemplateNotStarred());
 
   @override
   Stream<TemplateState> mapEventToState(TemplateEvent event) async* {
-    if (event is TemplateTapped) {
-      yield TemplateDetail(event.template);
+    if (event is LoadStarredStatus) {
+      yield _isTemplateStarred(event.template) ? TemplateStarred() : TemplateNotStarred();
+    } else if (event is StarTemplate) {
+      // TODO: Save template id in local sqlite
+      yield TemplateStarred();
+    } else if (event is UnstarTemplate) {
+      // TODO: Remove template id from local sqlite
+      yield TemplateNotStarred();
     }
+  }
+
+  bool _isTemplateStarred(Template template) {
+    // TODO: Check if template id is in local sqlite
+    return true;
   }
 }

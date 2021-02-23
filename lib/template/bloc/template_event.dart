@@ -5,8 +5,12 @@ abstract class TemplateEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class TemplateTapped extends TemplateEvent {
+class LoadStarredStatus extends TemplateEvent {
   final Template template;
 
-  TemplateTapped(this.template);
+  LoadStarredStatus(this.template);
 }
+
+class StarTemplate extends TemplateEvent {}
+
+class UnstarTemplate extends TemplateEvent {}

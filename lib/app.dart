@@ -6,7 +6,6 @@ import 'package:fuzzgram/home/home.dart';
 import 'package:fuzzgram/navigation/navigation.dart';
 import 'package:fuzzgram/routes.dart';
 import 'package:fuzzgram/search/bloc/search_bloc.dart';
-import 'package:fuzzgram/template/bloc/template_bloc.dart';
 import 'package:fuzzgram/template/template.dart';
 
 class App extends StatelessWidget {
@@ -30,7 +29,7 @@ class App extends StatelessWidget {
               } else if (settings.name == FuzzgramRoutes.exploreCategory) {
                 return BasePage(CategoryPage(settings.arguments), AppTab.explore, withBackButton: true);
               } else if (settings.name == FuzzgramRoutes.template) {
-                return BasePage(TemplatePage(settings.arguments), AppTab.explore, withBackButton: true);
+                return BasePage(TemplatePage(settings.arguments), null, withBackButton: true);
               } else {
                 return BasePage(Center(), AppTab.starred);
               }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:fuzzgram/category/category.dart';
+import 'package:fuzzgram/routes.dart';
 import 'package:template_repository/template_repository.dart';
 import 'package:social_share/social_share.dart';
 
@@ -108,6 +109,7 @@ class TemplateWidget extends StatelessWidget {
       child: InkWell(
         onTap: () {
           print("Template tapped: " + template.id + " " + template.name);
+          Navigator.pushNamed(context, FuzzgramRoutes.template, arguments: template);
         },
         onLongPress: () async {
           print("Long pressed template: "+ template.id + " " + template.name);
