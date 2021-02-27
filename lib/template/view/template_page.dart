@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:fuzzgram/template/bloc/template_bloc.dart';
 import 'package:template_repository/template_repository.dart';
+import 'package:social_share/social_share.dart';
 
 class TemplatePage extends StatelessWidget {
   final Template template;
@@ -29,7 +31,6 @@ class TemplateDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TemplateBloc, TemplateState>(builder: (context, state) {
-      print(template);
       return TemplateWidget(template: template);
     });
   }
@@ -42,24 +43,40 @@ class TemplateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      semanticContainer: true,
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        child: CachedNetworkImage(
-          imageUrl: template.imageUrl,
-          imageBuilder: (context, imageProvider) => Ink.image(
-            fit: BoxFit.contain,
-            image: imageProvider,
+    return Scaffold(
+        body: Card(
+          semanticContainer: true,
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            child: CachedNetworkImage(
+              imageUrl: template.imageUrl,
+              imageBuilder: (context, imageProvider) => Ink.image(
+                fit: BoxFit.fill,
+                image: imageProvider,
+              ),
+              placeholder: (context, url) => BottomLoader(),
+            ),
           ),
-          placeholder: (context, url) => BottomLoader(),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          elevation: 5,
+          margin: EdgeInsets.fromLTRB(30, 18, 30, 150)
         ),
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      elevation: 5,
-      margin: EdgeInsets.fromLTRB(30, 18, 30, 150)
+        floatingActionButton: Padding(
+            child: FloatingActionButton(
+              onPressed: () async {
+                final file =
+                await DefaultCacheManager().getSingleFile(template.imageUrl);
+                SocialShare.shareOptions(
+                    "Download Fuzzgram and get lots of templates like this!",
+                    imagePath: file.path);
+              },
+              child: Icon(Icons.share, color: Colors.black,),
+              backgroundColor: Colors.white,
+          ),
+          padding: EdgeInsets.fromLTRB(20, 0, 20, 120),
+        ),
     );
   }
 }
