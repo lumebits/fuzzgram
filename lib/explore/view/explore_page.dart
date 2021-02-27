@@ -73,38 +73,40 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridTile(
         child: Card(
-      semanticContainer: true,
-      clipBehavior: Clip.antiAlias,
-      child: Material(
-          child: Ink(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.fitWidth,
-              image: AssetImage(category.assetImage),
-              colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(category.darken), BlendMode.darken)),
-        ),
-        child: InkWell(
-            onTap: () {
-              print("Category tapped: " + category.name);
-              Navigator.pushNamed(context, FuzzgramRoutes.exploreCategory,
-                  arguments: category.name);
-            },
-            child: Center(
-                child: Text(
-              category.name.toUpperCase(),
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-              ),
-            ))),
-      )),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      elevation: 5,
-      margin: EdgeInsets.all(10),
+          semanticContainer: true,
+          clipBehavior: Clip.antiAlias,
+          child: Material(
+              child: Ink(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.fitWidth,
+                      image: AssetImage(category.assetImage),
+                      colorFilter: ColorFilter.mode(
+                          Colors.black.withOpacity(category.darken), BlendMode.darken)),
+                ),
+                child: InkWell(
+                    onTap: () {
+                      print("Category tapped: " + category.name);
+                      Navigator.pushNamed(context, FuzzgramRoutes.exploreCategory,
+                          arguments: category.name);
+                    },
+                    child: Center(
+                        child: Text(
+                        category.name.toUpperCase(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                        ),
+                    ))
+                ),
+              )
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          elevation: 5,
+          margin: EdgeInsets.all(10),
     ));
   }
 }
