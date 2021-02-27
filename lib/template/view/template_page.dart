@@ -44,6 +44,7 @@ class TemplateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0x00000000),
         body: Card(
           semanticContainer: true,
           clipBehavior: Clip.antiAlias,
