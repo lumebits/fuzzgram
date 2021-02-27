@@ -14,53 +14,59 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider<SearchBloc>(create: (_) => SearchBloc()),
-      ],
-      child: MaterialApp(
-        title: 'Fuzzgram',
-        onGenerateRoute: (settings) {
-          return PageRouteBuilder(
-            pageBuilder: (_, __, ___) {
-              if (settings.name == FuzzgramRoutes.home) {
-                return BasePage(HomePage(), AppTab.home);
-              } else if (settings.name == FuzzgramRoutes.explore) {
-                return BasePage(ExplorePage(), AppTab.explore);
-              } else if (settings.name == FuzzgramRoutes.exploreCategory) {
-                return BasePage(CategoryPage(settings.arguments), AppTab.explore, withBackButton: true);
-              } else if (settings.name == FuzzgramRoutes.template) {
-                return BasePage(TemplatePage(settings.arguments), null, withBackButton: true);
-              } else {
-                return BasePage(Center(), AppTab.starred);
-              }
-            },
-            transitionsBuilder: (_, a, __, c) =>
-                FadeTransition(opacity: a, child: c));
-        },
-      )
-    );
+        providers: [
+          BlocProvider<SearchBloc>(create: (_) => SearchBloc()),
+        ],
+        child: MaterialApp(
+          title: 'Fuzzgram',
+          onGenerateRoute: (settings) {
+            return PageRouteBuilder(
+                pageBuilder: (_, __, ___) {
+                  if (settings.name == FuzzgramRoutes.home) {
+                    return BasePage(HomePage(), AppTab.home);
+                  } else if (settings.name == FuzzgramRoutes.explore) {
+                    return BasePage(ExplorePage(), AppTab.explore);
+                  } else if (settings.name == FuzzgramRoutes.exploreCategory) {
+                    return BasePage(
+                        CategoryPage(settings.arguments), AppTab.explore,
+                        withBackButton: true, title: settings.arguments);
+                  } else if (settings.name == FuzzgramRoutes.template) {
+                    return BasePage(TemplatePage(settings.arguments), null,
+                        withBackButton: true);
+                  } else {
+                    return BasePage(Center(), AppTab.starred);
+                  }
+                },
+                transitionsBuilder: (_, a, __, c) =>
+                    FadeTransition(opacity: a, child: c));
+          },
+        ));
   }
 }
 
 class BasePage extends StatelessWidget {
   final Widget widget;
   final AppTab appTab;
-  final withBackButton;
+  final bool withBackButton;
+  final String title;
 
-  const BasePage(this.widget, this.appTab, {this.withBackButton = false});
+  const BasePage(this.widget, this.appTab,
+      {this.withBackButton = false, this.title = 'Fuzzgram'});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xEFFFFFFF),
         appBar: AppBar(
-          leading: withBackButton ? IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () => Navigator.pop(context),
-            color: Colors.black,
-          ) : null,
+          leading: withBackButton
+              ? IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.pop(context),
+                  color: Colors.black,
+                )
+              : null,
           title: Text(
-            'Fuzzgram',
+            title,
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
