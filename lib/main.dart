@@ -11,7 +11,8 @@ Future<void> main() async {
 
   EquatableConfig.stringify = kDebugMode;
   Bloc.observer = SimpleBlocObserver();
-  await TemplateRepository.initialize();
+  await FirebaseTemplateRepository().initialize();
+  await SqliteLocalTemplateRepository().initialize();
   runApp(App());
 }
 

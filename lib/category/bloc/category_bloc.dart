@@ -9,7 +9,7 @@ class CategoryBloc extends InfiniteBloc {
   CategoryBloc(templateRepository, this.category) : super(templateRepository);
 
   @override
-  Future<List<Template>> fetchTemplates([DateTime lastDate]) {
+  Future<List<Template>> fetchTemplates([DateTime lastDate, int offset]) {
     return templateRepository
         .findTemplates(templatesToLoad, category, lastDate)
         .first;

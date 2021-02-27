@@ -6,6 +6,7 @@ import 'package:fuzzgram/home/home.dart';
 import 'package:fuzzgram/navigation/navigation.dart';
 import 'package:fuzzgram/routes.dart';
 import 'package:fuzzgram/search/bloc/search_bloc.dart';
+import 'package:fuzzgram/starred/starred.dart';
 import 'package:fuzzgram/template/template.dart';
 
 class App extends StatelessWidget {
@@ -34,7 +35,7 @@ class App extends StatelessWidget {
                     return BasePage(TemplatePage(settings.arguments), null,
                         withBackButton: true);
                   } else {
-                    return BasePage(Center(), AppTab.starred);
+                    return BasePage(StarredPage(), AppTab.starred);
                   }
                 },
                 transitionsBuilder: (_, a, __, c) =>

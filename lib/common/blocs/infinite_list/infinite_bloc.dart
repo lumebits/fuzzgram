@@ -38,8 +38,8 @@ class InfiniteBloc extends Bloc<InfiniteEvent, InfiniteState> {
           return;
         }
         if (currentState is InfiniteSuccess) {
-          final templates =
-              await fetchTemplates(currentState.templates.last.date);
+          final templates = await fetchTemplates(
+              currentState.templates.last.date, currentState.templates.length);
           yield templates.isEmpty
               ? currentState.copyWith(hasReachedMax: true)
               : InfiniteSuccess(
@@ -54,9 +54,9 @@ class InfiniteBloc extends Bloc<InfiniteEvent, InfiniteState> {
     }
   }
 
-  Future<List<Template>> fetchTemplates([DateTime lastDate]) {
+  Future<List<Template>> fetchTemplates([DateTime lastDate, int offset]) {
     return templateRepository
-        .findTemplates(templatesToLoad, null, lastDate)
+        .findTemplates(templatesToLoad, null, lastDate, offset)
         .first;
   }
 
