@@ -11,7 +11,7 @@ class CategoryBloc extends InfiniteBloc {
   @override
   Future<List<Template>> fetchTemplates([DateTime lastDate]) {
     return templateRepository
-        .findTemplates(templatesToLoad, category.toUpperCase(), lastDate)
+        .findTemplates(templatesToLoad, category, lastDate)
         .first;
   }
 }
