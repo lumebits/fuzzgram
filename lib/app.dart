@@ -24,61 +24,20 @@ class App extends StatelessWidget {
             return PageRouteBuilder(
                 pageBuilder: (_, __, ___) {
                   if (settings.name == FuzzgramRoutes.home) {
-                    return BasePage(HomePage(), AppTab.home);
+                    return HomePage();
                   } else if (settings.name == FuzzgramRoutes.explore) {
-                    return BasePage(ExplorePage(), AppTab.explore);
+                    return ExplorePage();
                   } else if (settings.name == FuzzgramRoutes.exploreCategory) {
-                    return BasePage(
-                        CategoryPage(settings.arguments), AppTab.explore,
-                        withBackButton: true, title: settings.arguments);
+                    return CategoryPage(settings.arguments);
                   } else if (settings.name == FuzzgramRoutes.template) {
-                    return BasePage(TemplatePage(settings.arguments), null,
-                        withBackButton: true);
+                    return TemplatePage(settings.arguments);
                   } else {
-                    return BasePage(StarredPage(), AppTab.starred);
+                    return StarredPage();
                   }
                 },
                 transitionsBuilder: (_, a, __, c) =>
                     FadeTransition(opacity: a, child: c));
           },
         ));
-  }
-}
-
-class BasePage extends StatelessWidget {
-  final Widget widget;
-  final AppTab appTab;
-  final bool withBackButton;
-  final String title;
-
-  const BasePage(this.widget, this.appTab,
-      {this.withBackButton = false, this.title = 'Fuzzgram'});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color(0xEFFFFFFF),
-        appBar: AppBar(
-          leading: withBackButton
-              ? IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.pop(context),
-                  color: Colors.black,
-                )
-              : null,
-          title: Text(
-            title,
-            style: TextStyle(color: Colors.black),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-        ),
-        extendBody: true,
-        body: Stack(
-          children: [
-            widget,
-          ],
-        ),
-        bottomNavigationBar: NavigationWidget(activeTab: appTab));
   }
 }

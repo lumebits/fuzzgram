@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fuzzgram/common/widgets/base_page.dart';
+import 'package:fuzzgram/navigation/navigation.dart';
 
 import '../../routes.dart';
 
-class ExplorePage extends StatelessWidget {
+class ExplorePage extends BasePage {
+  ExplorePage({Key key}) : super(key, appTab: AppTab.explore);
+
   @override
-  Widget build(BuildContext context) {
+  Widget widget(BuildContext context) {
     return GridView.count(
       padding: EdgeInsets.only(bottom: 90.0),
       crossAxisCount: 2,
@@ -73,38 +77,38 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridTile(
         child: Card(
-        semanticContainer: true,
-        clipBehavior: Clip.antiAlias,
-          child: Material(
-              child: Ink(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.fitWidth,
-                      image: AssetImage(category.assetImage),
-                      colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(category.darken), BlendMode.darken)),
-            ),
-                child: InkWell(
-                    onTap: () {
-                      print("Category tapped: " + category.name);
-                      Navigator.pushNamed(context, FuzzgramRoutes.exploreCategory,
-                          arguments: category.name);
-                    },
-                    child: Center(
-                        child: Text(
-                      category.name,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 22,
-                      ),
-                    ))),
-              )),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+      semanticContainer: true,
+      clipBehavior: Clip.antiAlias,
+      child: Material(
+          child: Ink(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.fitWidth,
+              image: AssetImage(category.assetImage),
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(category.darken), BlendMode.darken)),
         ),
-        elevation: 5,
-        margin: EdgeInsets.all(10),
+        child: InkWell(
+            onTap: () {
+              print("Category tapped: " + category.name);
+              Navigator.pushNamed(context, FuzzgramRoutes.exploreCategory,
+                  arguments: category.name);
+            },
+            child: Center(
+                child: Text(
+              category.name,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ),
+            ))),
+      )),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      elevation: 5,
+      margin: EdgeInsets.all(10),
     ));
   }
 }

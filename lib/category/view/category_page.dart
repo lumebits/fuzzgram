@@ -4,16 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fuzzgram/category/category.dart';
 import 'package:fuzzgram/common/blocs/infinite_list/infinite_bloc.dart';
+import 'package:fuzzgram/common/widgets/base_page.dart';
 import 'package:fuzzgram/common/widgets/infinite_page.dart';
+import 'package:fuzzgram/navigation/navigation.dart';
 import 'package:template_repository/template_repository.dart';
 
-class CategoryPage extends StatelessWidget {
+class CategoryPage extends BasePage {
   final String category;
 
-  CategoryPage(this.category, {Key key}) : super(key: key);
+  CategoryPage(this.category, {Key key})
+      : super(key,
+            appTab: AppTab.explore, withBackButton: true, title: category);
 
   @override
-  Widget build(BuildContext context) {
+  Widget widget(BuildContext context) {
     return BlocProvider(
       create: (context) => CategoryBloc(FirebaseTemplateRepository(), category)
         ..add(FetchTemplates()),
@@ -22,14 +26,12 @@ class CategoryPage extends StatelessWidget {
   }
 }
 
-
 class InfiniteCategoryPage extends InfinitePage {
   @override
   _InfiniteCategoryPageState createState() => _InfiniteCategoryPageState();
 }
 
 class _InfiniteCategoryPageState extends InfinitePageState {
-
   @override
   void initState() {
     try {
