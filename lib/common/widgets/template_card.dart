@@ -18,7 +18,7 @@ class TemplateWidget extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () {
-          print("Template tapped: " + template.id + " " + template.name);
+          print("Template tapped: " + template.id);
           Navigator.pushNamed(context, FuzzgramRoutes.template,
               arguments: template);
         },

@@ -7,7 +7,7 @@ import 'entity/entities.dart';
 
 final String templateTable = 'template';
 final String columnId = 'id';
-final String columnImage = 'image';
+final String columnImage = 'imageUrl';
 
 class SqliteLocalTemplateRepository implements TemplateRepository {
   static final SqliteLocalTemplateRepository _sqliteLocalTemplateRepository =

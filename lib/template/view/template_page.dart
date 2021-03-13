@@ -60,7 +60,7 @@ class TemplatePage extends BasePage {
         ),
         backgroundColor: Colors.white,
       ),
-      padding: EdgeInsets.only(right: 14),
+      padding: EdgeInsets.only(right: 14, bottom: 14),
     );
   }
 
