@@ -16,10 +16,30 @@ class TemplatePage extends BasePage {
 
   @override
   Widget widget(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TemplateBloc(template)..add(LoadStarredStatus()),
-      child: TemplateDetailPage(template),
-    );
+    return TemplateDetailPage(template);
+  }
+
+  @override
+  List<Widget> actions() {
+    return [
+      BlocBuilder<TemplateBloc, TemplateState>(builder: (context, state) {
+        return IconButton(
+          icon: Icon(
+            state is TemplateStarred ? Icons.star : Icons.star_border,
+            color: Colors.black,
+          ),
+          tooltip: 'Save template',
+          onPressed: () {
+            Scaffold.of(context).showSnackBar(SnackBar(
+                content: Text(state is TemplateStarred
+                    ? 'Template unstarred!'
+                    : 'Template starred!')));
+            BlocProvider.of<TemplateBloc>(context).add(
+                state is TemplateStarred ? UnstarTemplate() : StarTemplate());
+          },
+        );
+      })
+    ];
   }
 }
 

@@ -56,4 +56,16 @@ class SqliteLocalTemplateRepository implements TemplateRepository {
       columnImage: template.imageUrl
     });
   }
+
+  @override
+  Future delete(String id) async {
+    await db.delete(templateTable, where: '$columnId = ?', whereArgs: [id]);
+  }
+
+  @override
+  Future<bool> exists(String id) async {
+    var queryResult =
+        await db.query(templateTable, where: '$columnId = ?', whereArgs: [id]);
+    return queryResult.isNotEmpty;
+  }
 }

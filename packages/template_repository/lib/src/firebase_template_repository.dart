@@ -48,4 +48,14 @@ class FirebaseTemplateRepository implements TemplateRepository {
   Future insert(Template template) {
     throw UnimplementedError();
   }
+
+  @override
+  Future delete(String id) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> exists(String id) {
+    throw UnimplementedError();
+  }
 }

@@ -10,6 +10,8 @@ abstract class BasePage extends StatelessWidget {
       {this.appTab, this.withBackButton = false, this.title = 'Fuzzgram'})
       : super(key: key);
 
+  List<Widget> actions() => null;
+
   Widget appBar(context) {
     return AppBar(
       leading: withBackButton
@@ -25,6 +27,7 @@ abstract class BasePage extends StatelessWidget {
       ),
       centerTitle: true,
       backgroundColor: Colors.white,
+      actions: actions(),
     );
   }
 

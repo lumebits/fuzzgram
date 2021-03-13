@@ -8,6 +8,7 @@ import 'package:fuzzgram/routes.dart';
 import 'package:fuzzgram/search/bloc/search_bloc.dart';
 import 'package:fuzzgram/starred/starred.dart';
 import 'package:fuzzgram/template/template.dart';
+import 'package:template_repository/template_repository.dart';
 
 class App extends StatelessWidget {
   App({Key key}) : super(key: key);
@@ -30,7 +31,12 @@ class App extends StatelessWidget {
                   } else if (settings.name == FuzzgramRoutes.exploreCategory) {
                     return CategoryPage(settings.arguments);
                   } else if (settings.name == FuzzgramRoutes.template) {
-                    return TemplatePage(settings.arguments);
+                    return BlocProvider(
+                      create: (context) => TemplateBloc(
+                          SqliteLocalTemplateRepository(), settings.arguments)
+                        ..add(LoadStarredStatus()),
+                      child: TemplatePage(settings.arguments),
+                    );
                   } else {
                     return StarredPage();
                   }

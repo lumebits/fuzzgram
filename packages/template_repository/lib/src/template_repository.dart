@@ -6,5 +6,9 @@ abstract class TemplateRepository {
 
   Future insert(Template template);
 
+  Future delete(String id);
+
+  Future<bool> exists(String id);
+
   Future initialize();
 }
