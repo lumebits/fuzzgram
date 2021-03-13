@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fuzzgram/common/blocs/infinite_list/infinite_bloc.dart';
+import 'package:fuzzgram/common/widgets/bottom_loader.dart';
 import 'package:fuzzgram/common/widgets/template_card.dart';
 
 class InfinitePage extends StatefulWidget {
@@ -25,22 +27,20 @@ class InfinitePageState extends State<InfinitePage> {
       return Center(child: BottomLoader());
     } else if (state is InfiniteSuccess) {
       final templatesList = state.templates;
-      return GridView.builder(
+      return StaggeredGridView.countBuilder(
         padding: EdgeInsets.only(bottom: 90.0),
         controller: _scrollController,
         shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: MediaQuery.of(context).size.width /
-              (MediaQuery.of(context).size.height) *
-              1.25,
-        ),
+        crossAxisCount: 2,
+        staggeredTileBuilder: (index) {
+          return StaggeredTile.fit(index >= templatesList.length ? 2 : 1);
+        },
         itemCount: state.hasReachedMax
             ? templatesList.length
             : templatesList.length + 1,
         itemBuilder: (context, index) {
           return index >= templatesList.length
-              ? BottomLoader()
+              ? (state.hasReachedMax ? Center() : BottomLoader())
               : GridTile(
               child: TemplateWidget(template: templatesList[index]));
         },

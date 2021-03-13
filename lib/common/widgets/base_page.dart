@@ -12,6 +12,12 @@ abstract class BasePage extends StatelessWidget {
 
   List<Widget> actions() => null;
 
+  Widget bottomNavigationBar() => NavigationWidget(activeTab: appTab);
+
+  Widget floatingActionButton() => null;
+
+  Widget widget(BuildContext context);
+
   Widget appBar(context) {
     return AppBar(
       leading: withBackButton
@@ -31,8 +37,6 @@ abstract class BasePage extends StatelessWidget {
     );
   }
 
-  Widget widget(BuildContext context);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +48,7 @@ abstract class BasePage extends StatelessWidget {
             widget(context),
           ],
         ),
-        bottomNavigationBar: NavigationWidget(activeTab: appTab));
+        floatingActionButton: floatingActionButton(),
+        bottomNavigationBar: bottomNavigationBar());
   }
 }

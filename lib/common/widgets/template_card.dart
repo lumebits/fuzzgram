@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:fuzzgram/common/widgets/bottom_loader.dart';
 import 'package:fuzzgram/routes.dart';
 import 'package:social_share/social_share.dart';
 import 'package:template_repository/template_repository.dart';
@@ -32,6 +33,8 @@ class TemplateWidget extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: template.imageUrl,
           imageBuilder: (context, imageProvider) => Ink.image(
+            height:
+                (MediaQuery.of(context).size.width / 2 - 20) * (1920 / 1080),
             fit: BoxFit.fill,
             image: imageProvider,
           ),
@@ -43,25 +46,6 @@ class TemplateWidget extends StatelessWidget {
       ),
       elevation: 5,
       margin: EdgeInsets.all(10),
-    );
-  }
-}
-
-class BottomLoader extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Center(
-        child: SizedBox(
-          width: 33,
-          height: 33,
-          child: CircularProgressIndicator(
-            strokeWidth: 1.5,
-            valueColor: new AlwaysStoppedAnimation<Color>(Colors.grey),
-          ),
-        ),
-      ),
     );
   }
 }

@@ -34,7 +34,9 @@ class InfiniteBloc extends Bloc<InfiniteEvent, InfiniteState> {
       try {
         if (currentState is InfiniteInitial) {
           final templates = await fetchTemplates();
-          yield InfiniteSuccess(templates: templates, hasReachedMax: false);
+          yield InfiniteSuccess(
+              templates: templates,
+              hasReachedMax: templates.length < templatesToLoad);
           return;
         }
         if (currentState is InfiniteSuccess) {
@@ -44,7 +46,7 @@ class InfiniteBloc extends Bloc<InfiniteEvent, InfiniteState> {
               ? currentState.copyWith(hasReachedMax: true)
               : InfiniteSuccess(
                   templates: currentState.templates + templates,
-                  hasReachedMax: false,
+                  hasReachedMax: templates.length < templatesToLoad,
                 );
         }
       } catch (e) {
