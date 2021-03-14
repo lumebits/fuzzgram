@@ -31,7 +31,6 @@ abstract class BasePage extends StatelessWidget {
       title: Container(
         child: Hero(tag: "logo", child: appLogo),
         height: 45,
-        width: 2000,
       ),
       centerTitle: true,
       backgroundColor: Colors.white,
