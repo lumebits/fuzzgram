@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fuzzgram/navigation/navigation.dart';
+import 'package:fuzzgram/theme.dart';
 
 abstract class BasePage extends StatelessWidget {
   final AppTab appTab;
@@ -27,9 +28,10 @@ abstract class BasePage extends StatelessWidget {
               color: Colors.black,
             )
           : null,
-      title: Text(
-        title,
-        style: TextStyle(color: Colors.black),
+      title: Container(
+        child: Hero(tag: "logo", child: appLogo),
+        height: 45,
+        width: 2000,
       ),
       centerTitle: true,
       backgroundColor: Colors.white,
