@@ -92,14 +92,16 @@ class TemplateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: InkWell(
-        child: CachedNetworkImage(
-          imageUrl: template.imageUrl,
-          imageBuilder: (context, imageProvider) => Ink.image(
-            height: (MediaQuery.of(context).size.width - 20) * (1920 / 1080),
-            fit: BoxFit.fill,
-            image: imageProvider,
+        child: Hero(
+          tag: template.id,
+          child: CachedNetworkImage(
+            imageUrl: template.imageUrl,
+            imageBuilder: (context, imageProvider) => Image(
+              fit: BoxFit.fill,
+              image: imageProvider,
+            ),
+            placeholder: (context, url) => BottomLoader(),
           ),
-          placeholder: (context, url) => BottomLoader(),
         ),
       ),
     );

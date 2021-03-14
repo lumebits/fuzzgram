@@ -30,15 +30,19 @@ class TemplateWidget extends StatelessWidget {
               "Download Fuzzgram and get lots of templates like this!",
               imagePath: file.path);
         },
-        child: CachedNetworkImage(
-          imageUrl: template.imageUrl,
-          imageBuilder: (context, imageProvider) => Ink.image(
-            height:
-                (MediaQuery.of(context).size.width / 2 - 20) * (1920 / 1080),
-            fit: BoxFit.fill,
-            image: imageProvider,
+        child: Hero(
+          tag: template.id,
+          child: Material(
+            child: CachedNetworkImage(
+              height: (MediaQuery.of(context).size.width / 2 - 20) * (1920 / 1080),
+              imageUrl: template.imageUrl,
+              imageBuilder: (context, imageProvider) => Ink.image(
+                fit: BoxFit.fill,
+                image: imageProvider,
+              ),
+              placeholder: (context, url) => BottomLoader(),
+            ),
           ),
-          placeholder: (context, url) => BottomLoader(),
         ),
       ),
       shape: RoundedRectangleBorder(
