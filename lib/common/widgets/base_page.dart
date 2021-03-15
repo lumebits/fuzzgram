@@ -8,7 +8,7 @@ abstract class BasePage extends StatelessWidget {
   final String title;
 
   const BasePage(Key key,
-      {this.appTab, this.withBackButton = false, this.title = 'Fuzzgram'})
+      {this.appTab, this.withBackButton = false, this.title})
       : super(key: key);
 
   List<Widget> actions() => null;
@@ -29,7 +29,11 @@ abstract class BasePage extends StatelessWidget {
             )
           : null,
       title: Container(
-        child: Hero(tag: "logo", child: appLogo),
+        child: Hero(tag: "logo", child: title != null ?
+          Text(
+            title,
+            style: TextStyle(color: Colors.black)
+          ) : appLogo),
         height: 45,
       ),
       centerTitle: true,

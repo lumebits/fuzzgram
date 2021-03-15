@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fuzzgram/category/category.dart';
 import 'package:fuzzgram/explore/explore.dart';
 import 'package:fuzzgram/home/home.dart';
-import 'package:fuzzgram/navigation/navigation.dart';
 import 'package:fuzzgram/routes.dart';
 import 'package:fuzzgram/search/bloc/search_bloc.dart';
 import 'package:fuzzgram/starred/starred.dart';
@@ -20,6 +19,7 @@ class App extends StatelessWidget {
           BlocProvider<SearchBloc>(create: (_) => SearchBloc()),
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner:false,
           title: 'Fuzzgram',
           onGenerateRoute: (settings) {
             return PageRouteBuilder(
