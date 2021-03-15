@@ -31,7 +31,7 @@ class TemplatePage extends BasePage {
           ),
           tooltip: 'Save template',
           onPressed: () {
-            Scaffold.of(context).showSnackBar(SnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(state is TemplateStarred
                     ? 'Template unstarred!'
                     : 'Template starred!')));

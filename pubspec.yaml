@@ -45,11 +45,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  bloc_test:
-  mockito:
-  integration_test: ^1.0.0
-  change_app_package_name: ^0.1.2
-  flutter_launcher_icons: ^0.7.0
+  #bloc_test:
+  #mockito:
+  #integration_test: ^1.0.0
+  #change_app_package_name: ^0.1.2
+  #flutter_launcher_icons: ^0.7.0
+  flutter_native_splash: ^1.0.3
 
 flutter_icons:
   ios: true
