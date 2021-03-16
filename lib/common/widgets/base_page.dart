@@ -28,14 +28,12 @@ abstract class BasePage extends StatelessWidget {
               color: Colors.black,
             )
           : null,
-      title: Container(
-        child: Hero(tag: "logo", child: title != null ?
-          Text(
-            title,
-            style: TextStyle(color: Colors.black)
-          ) : appLogo),
-        height: 45,
-      ),
+      title: title != null
+          ? Text(title, style: TextStyle(color: Colors.black))
+          : Container(
+              child: Hero(tag: "logo", child: appLogo),
+              height: 45,
+            ),
       centerTitle: true,
       backgroundColor: Colors.white,
       actions: actions(),

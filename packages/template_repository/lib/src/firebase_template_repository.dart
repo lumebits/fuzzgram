@@ -21,6 +21,7 @@ class FirebaseTemplateRepository implements TemplateRepository {
   @override
   Future initialize() async {
     await Firebase.initializeApp();
+    FirebaseFirestore.instance.settings = Settings(persistenceEnabled: false);
   }
 
   @override
