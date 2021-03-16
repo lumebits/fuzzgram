@@ -45,14 +45,14 @@ class TemplatePage extends BasePage {
   }
 
   @override
-  Widget floatingActionButton() {
+  Widget floatingActionButton(BuildContext context) {
     return Padding(
       child: FloatingActionButton(
         onPressed: () async {
           final file =
               await DefaultCacheManager().getSingleFile(template.imageUrl);
           SocialShare.shareOptions(
-              "Download Fuzzgram and get lots of templates like this!",
+              AppLocalizations.of(context).share_message,
               imagePath: file.path);
         },
         child: Icon(

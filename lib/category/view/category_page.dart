@@ -1,26 +1,29 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fuzzgram/category/category.dart';
 import 'package:fuzzgram/common/blocs/infinite_list/infinite_bloc.dart';
+import 'package:fuzzgram/common/models/category.dart';
 import 'package:fuzzgram/common/widgets/base_page.dart';
 import 'package:fuzzgram/common/widgets/infinite_page.dart';
 import 'package:fuzzgram/navigation/navigation.dart';
 import 'package:template_repository/template_repository.dart';
 
 class CategoryPage extends BasePage {
-  final String category;
+  final Category category;
 
   CategoryPage(this.category, {Key key})
       : super(key,
-            appTab: AppTab.explore, withBackButton: true, title: category);
+            appTab: AppTab.explore,
+            withBackButton: true,
+            title: category.displayName);
 
   @override
   Widget widget(BuildContext context) {
     return BlocProvider(
-      create: (context) => CategoryBloc(FirebaseTemplateRepository(), category)
-        ..add(FetchTemplates()),
+      create: (context) =>
+          CategoryBloc(FirebaseTemplateRepository(), category.name)
+            ..add(FetchTemplates()),
       child: InfiniteCategoryPage(),
     );
   }
