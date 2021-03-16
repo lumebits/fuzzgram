@@ -15,7 +15,7 @@ abstract class BasePage extends StatelessWidget {
 
   Widget bottomNavigationBar() => NavigationWidget(activeTab: appTab);
 
-  Widget floatingActionButton() => null;
+  Widget floatingActionButton(BuildContext context) => null;
 
   Widget widget(BuildContext context);
 
@@ -51,7 +51,7 @@ abstract class BasePage extends StatelessWidget {
             widget(context),
           ],
         ),
-        floatingActionButton: floatingActionButton(),
+        floatingActionButton: floatingActionButton(context),
         bottomNavigationBar: bottomNavigationBar());
   }
 }
