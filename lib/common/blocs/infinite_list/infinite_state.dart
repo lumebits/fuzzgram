@@ -1,30 +1,30 @@
-part of 'home_bloc.dart';
+part of 'infinite_bloc.dart';
 
-abstract class HomeState extends Equatable {
-  const HomeState();
+abstract class InfiniteState extends Equatable {
+  const InfiniteState();
 
   @override
   List<Object> get props => [];
 }
 
-class HomeInitial extends HomeState {}
+class InfiniteInitial extends InfiniteState {}
 
-class HomeFailure extends HomeState {}
+class InfiniteFailure extends InfiniteState {}
 
-class HomeSuccess extends HomeState {
+class InfiniteSuccess extends InfiniteState {
   final List<Template> templates;
   final bool hasReachedMax;
 
-  const HomeSuccess({
+  const InfiniteSuccess({
     this.templates = const <Template>[],
     this.hasReachedMax = false,
   });
 
-  HomeSuccess copyWith({
+  InfiniteSuccess copyWith({
     List<Template> templates,
     bool hasReachedMax,
   }) {
-    return HomeSuccess(
+    return InfiniteSuccess(
       templates: templates ?? this.templates,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
     );
@@ -35,5 +35,5 @@ class HomeSuccess extends HomeState {
 
   @override
   String toString() =>
-      'HomeSuccess { templates: ${templates.length}, hasReachedMax: $hasReachedMax }';
+      'InfiniteSuccess { templates: ${templates.length}, hasReachedMax: $hasReachedMax }';
 }

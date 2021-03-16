@@ -35,12 +35,12 @@ class TemplateEntity extends Equatable {
 
   static TemplateEntity fromJson(Map<String, Object> json) {
     return TemplateEntity(
-      json["id"] as String,
-      json["name"] as String,
-      json["popularity"] as int,
-      json["imageUrl"] as String,
-      json["date"] as DateTime,
-      json["categories"] as List,
+      json.containsKey("id") ? json["id"] as String : null,
+      json.containsKey("name") ? json["name"] as String : null,
+      json.containsKey("popularity") ? json["popularity"] as int : null,
+      json.containsKey("imageUrl") ? json["imageUrl"] as String : null,
+      json.containsKey("date") ? json["date"] as DateTime : null,
+      json.containsKey("categories") ? json["categories"] as List : null,
     );
   }
 
