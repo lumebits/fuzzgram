@@ -9,6 +9,7 @@ import 'package:fuzzgram/common/widgets/bottom_loader.dart';
 import 'package:fuzzgram/template/bloc/template_bloc.dart';
 import 'package:template_repository/template_repository.dart';
 import 'package:social_share/social_share.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TemplatePage extends BasePage {
   final Template template;
@@ -33,8 +34,8 @@ class TemplatePage extends BasePage {
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(state is TemplateStarred
-                    ? 'Template unstarred!'
-                    : 'Template starred!')));
+                    ? AppLocalizations.of(context).template_unstarred
+                    : AppLocalizations.of(context).template_starred)));
             BlocProvider.of<TemplateBloc>(context).add(
                 state is TemplateStarred ? UnstarTemplate() : StarTemplate());
           },

@@ -1,0 +1,40 @@
+{
+    "home": "Home",
+    "@home": {
+    "description": "Home navbar tab"
+    },
+    "explore": "Explore",
+    "@explore": {
+      "description": "Explore navbar tab"
+    },
+    "starred": "Starred",
+    "@starred": {
+      "description": "Starred navbar tab"
+    },
+    "share_message": "Download Fuzzgram and get lots of templates like this!",
+    "@share_message": {
+    "description": "Message that is in shown when a template is shared."
+    },
+     "template_starred": "Template starred!",
+     "@template_starred": {
+     "description": "Message when a template is starred."
+     },
+    "template_unstarred": "Template unstarred!",
+    "@template_unstarred": {
+    "description": "Message when a template is unstarred."
+    },
+    "movies": "MOVIES",
+    "beauty": "BEAUTY",
+    "tv_shows": "TV SHOWS",
+    "travel": "TRAVEL",
+    "animals": "ANIMALS",
+    "tech": "TECH",
+    "food": "FOOD",
+    "fashion": "FASHION",
+    "productivity": "PRODUCTIVITY",
+    "sport": "SPORT",
+    "music": "MUSIC",
+    "self_care": "SELF CARE",
+    "about_me": "ABOUT ME",
+    "this_or_that": "THIS OR THAT"
+}

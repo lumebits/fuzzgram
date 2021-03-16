@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fuzzgram/common/widgets/base_page.dart';
 import 'package:fuzzgram/navigation/navigation.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../routes.dart';
 
@@ -22,46 +23,46 @@ class ExplorePage extends BasePage {
       children: [
         CategoryItem(
             category:
-            new Category("MOVIES", "assets/categories/movies.jpg")),
+            new Category("MOVIES", "assets/categories/movies.jpg", AppLocalizations.of(context).movies)),
         CategoryItem(
             category:
-            new Category("BEAUTY", "assets/categories/beauty.jpg", 0.3)),
+            new Category("BEAUTY", "assets/categories/beauty.jpg", AppLocalizations.of(context).beauty, 0.3)),
         CategoryItem(
             category:
-            new Category("TV SHOWS", "assets/categories/tv-shows.jpg")),
+            new Category("TV SHOWS", "assets/categories/tv-shows.jpg", AppLocalizations.of(context).tv_shows)),
         CategoryItem(
             category:
-            new Category("TRAVEL", "assets/categories/travel.jpg", 0.2)),
+            new Category("TRAVEL", "assets/categories/travel.jpg", AppLocalizations.of(context).travel, 0.2)),
         CategoryItem(
             category:
-            new Category("ANIMALS", "assets/categories/animals.jpg", 0.2)),
+            new Category("ANIMALS", "assets/categories/animals.jpg", AppLocalizations.of(context).animals, 0.2)),
         CategoryItem(
             category:
-            new Category("TECH", "assets/categories/tech.jpg", 0.15)),
+            new Category("TECH", "assets/categories/tech.jpg", AppLocalizations.of(context).tech, 0.15)),
         CategoryItem(
             category:
-            new Category("FOOD", "assets/categories/food.jpg", 0.2)),
+            new Category("FOOD", "assets/categories/food.jpg", AppLocalizations.of(context).food, 0.2)),
         CategoryItem(
             category:
-            new Category("FASHION", "assets/categories/fashion.jpg", 0.2)),
+            new Category("FASHION", "assets/categories/fashion.jpg", AppLocalizations.of(context).fashion, 0.2)),
         CategoryItem(
             category:
-            new Category("PRODUCTIVITY", "assets/categories/productivity.jpg", 0.2)),
+            new Category("PRODUCTIVITY", "assets/categories/productivity.jpg", AppLocalizations.of(context).productivity, 0.2)),
         CategoryItem(
             category:
-            new Category("SPORT", "assets/categories/sport.jpg", 0.15)),
+            new Category("SPORT", "assets/categories/sport.jpg", AppLocalizations.of(context).sport, 0.15)),
         CategoryItem(
             category:
-            new Category("MUSIC", "assets/categories/music.jpg", 0.15)),
+            new Category("MUSIC", "assets/categories/music.jpg", AppLocalizations.of(context).music, 0.15)),
         CategoryItem(
             category:
-            new Category("SELF CARE", "assets/categories/self-care.jpg")),
+            new Category("SELF CARE", "assets/categories/self-care.jpg", AppLocalizations.of(context).self_care)),
         CategoryItem(
             category:
-            new Category("ABOUT ME", "assets/categories/about-me.jpg", 0.15)),
+            new Category("ABOUT ME", "assets/categories/about-me.jpg", AppLocalizations.of(context).about_me, 0.15)),
         CategoryItem(
             category:
-            new Category("THIS OR THAT", "assets/categories/this-or-that.jpg", 0.05)),
+            new Category("THIS OR THAT", "assets/categories/this-or-that.jpg", AppLocalizations.of(context).this_or_that, 0.05)),
       ],
     );
   }
@@ -70,9 +71,10 @@ class ExplorePage extends BasePage {
 class Category {
   final String name;
   final String assetImage;
+  final String displayName;
   final double darken;
 
-  Category(this.name, this.assetImage, [this.darken = 0.1]);
+  Category(this.name, this.assetImage, this.displayName, [this.darken = 0.1]);
 }
 
 class CategoryItem extends StatelessWidget {
@@ -95,7 +97,7 @@ class CategoryItem extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: AutoSizeText(
-            category.name,
+            category.displayName,
             maxLines: 1,
             style: TextStyle(
               color: Colors.white,

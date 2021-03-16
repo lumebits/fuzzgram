@@ -9,7 +9,7 @@ part 'infinite_event.dart';
 
 part 'infinite_state.dart';
 
-const templatesToLoad = 10;
+const templatesToLoad = 25;
 
 class InfiniteBloc extends Bloc<InfiniteEvent, InfiniteState> {
   final TemplateRepository templateRepository;

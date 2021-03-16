@@ -1,0 +1,22 @@
+{
+  "home": "Inicio",
+  "explore": "Explorar",
+  "starred": "Favoritos",
+  "share_message": "¡Descarga Fuzzgram y accede a plantillas como esta!",
+  "template_starred": "¡Añadido a favoritos!",
+  "template_unstarred": "Eliminado de favoritos",
+  "movies": "PELÍCULAS",
+  "beauty": "BELLEZA",
+  "tv_shows": "SERIES",
+  "travel": "VIAJES",
+  "animals": "ANIMALES",
+  "tech": "TECNLOGÍA",
+  "food": "COMIDA",
+  "fashion": "FASHION",
+  "productivity": "PRODUCTIVIDAD",
+  "sport": "DEPORTES",
+  "music": "MÚSICA",
+  "self_care": "SELF CARE",
+  "about_me": "SOBRE MÍ",
+  "this_or_that": "ESTO O AQUELLO"
+}
