@@ -37,6 +37,7 @@ dependencies:
   social_share:
     git:
       url: git://github.com/ShekarMudaliyar/social_share.git
+  flutter_native_admob: ^2.1.0+3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
