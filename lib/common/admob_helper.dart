@@ -17,8 +17,8 @@ class AdmobHelper {
   final _controller = NativeAdmobController();
 
   static String nativeAdUnitId = Platform.isAndroid
-      ? 'ca-app-pub-3940256099942544/2247696110'
-      : 'ca-app-pub-3940256099942544/3986624511';
+      ? 'ca-app-pub-4626087653139766/7416737629'
+      : 'ca-app-pub-4626087653139766/2698531909';
 
   Widget nativeAd() {
     return Container(
