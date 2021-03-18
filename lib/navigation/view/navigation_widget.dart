@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fuzzgram/fuzzgram_keys.dart';
 import 'package:fuzzgram/navigation/model/app_tab.dart';
 import 'package:fuzzgram/routes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NavigationWidget extends StatelessWidget {
   final AppTab activeTab;
@@ -29,9 +30,9 @@ class NavigationWidget extends StatelessWidget {
       borderRadius: 36,
       margin: const EdgeInsets.symmetric(horizontal: 28, vertical: 28),
       items: [
-        FloatingNavbarItem(icon: Icons.home, title: 'Home'),
-        FloatingNavbarItem(icon: Icons.explore, title: 'Explore'),
-        FloatingNavbarItem(icon: Icons.star, title: 'Starred'),
+        FloatingNavbarItem(icon: Icons.home, title: AppLocalizations.of(context).home),
+        FloatingNavbarItem(icon: Icons.explore, title: AppLocalizations.of(context).explore),
+        FloatingNavbarItem(icon: Icons.star, title: AppLocalizations.of(context).starred),
       ],
     );
   }

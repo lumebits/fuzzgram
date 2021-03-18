@@ -8,6 +8,7 @@ import 'package:fuzzgram/search/bloc/search_bloc.dart';
 import 'package:fuzzgram/starred/starred.dart';
 import 'package:fuzzgram/template/template.dart';
 import 'package:template_repository/template_repository.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class App extends StatelessWidget {
   App({Key key}) : super(key: key);
@@ -44,6 +45,8 @@ class App extends StatelessWidget {
                 transitionsBuilder: (_, a, __, c) =>
                     FadeTransition(opacity: a, child: c));
           },
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
         ));
   }
 }
