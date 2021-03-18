@@ -37,6 +37,7 @@ dependencies:
   social_share:
     git:
       url: git://github.com/ShekarMudaliyar/social_share.git
+  flutter_native_admob: ^2.1.0+3
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fuzzgram/common/admob_helper.dart';
 import 'package:fuzzgram/navigation/navigation.dart';
 import 'package:fuzzgram/theme.dart';
 
@@ -46,9 +47,16 @@ abstract class BasePage extends StatelessWidget {
         backgroundColor: Color(0xEFFFFFFF),
         appBar: appBar(context),
         extendBody: true,
-        body: Stack(
+        body: Column(
           children: [
-            widget(context),
+            AdmobHelper().nativeAd(),
+            Expanded(
+              child: Stack(
+                children: [
+                  widget(context),
+                ],
+              ),
+            ),
           ],
         ),
         floatingActionButton: floatingActionButton(context),
