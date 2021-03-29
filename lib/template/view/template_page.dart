@@ -92,6 +92,7 @@ class TemplateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      padding: EdgeInsets.only(right: 14, left: 14),
       child: InkWell(
         child: Hero(
           tag: template.id,

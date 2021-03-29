@@ -22,6 +22,7 @@ class AdmobHelper {
 
   Widget nativeAd() {
     return Container(
+      padding: EdgeInsets.only(right: 14, left: 14),
       height: 65,
       child: NativeAdmob(
         adUnitID: nativeAdUnitId,
