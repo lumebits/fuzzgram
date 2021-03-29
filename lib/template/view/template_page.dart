@@ -96,13 +96,16 @@ class TemplateWidget extends StatelessWidget {
       child: InkWell(
         child: Hero(
           tag: template.id,
-          child: CachedNetworkImage(
-            imageUrl: template.imageUrl,
-            imageBuilder: (context, imageProvider) => Image(
-              fit: BoxFit.fill,
-              image: imageProvider,
-            ),
-            placeholder: (context, url) => BottomLoader(),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: CachedNetworkImage(
+              imageUrl: template.imageUrl,
+              imageBuilder: (context, imageProvider) => Image(
+                fit: BoxFit.fill,
+                image: imageProvider,
+              ),
+              placeholder: (context, url) => BottomLoader(),
+            )
           ),
         ),
       ),
