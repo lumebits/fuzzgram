@@ -92,16 +92,20 @@ class TemplateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      padding: EdgeInsets.only(right: 14, left: 14),
       child: InkWell(
         child: Hero(
           tag: template.id,
-          child: CachedNetworkImage(
-            imageUrl: template.imageUrl,
-            imageBuilder: (context, imageProvider) => Image(
-              fit: BoxFit.fill,
-              image: imageProvider,
-            ),
-            placeholder: (context, url) => BottomLoader(),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: CachedNetworkImage(
+              imageUrl: template.imageUrl,
+              imageBuilder: (context, imageProvider) => Image(
+                fit: BoxFit.fill,
+                image: imageProvider,
+              ),
+              placeholder: (context, url) => BottomLoader(),
+            )
           ),
         ),
       ),
